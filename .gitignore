@@ -1,0 +1,14 @@
+.venv/
+venv/
+ENV/
+data/
+*.csv
+*.zip
+models/*.pkl
+*.pkl
+__pycache__/
+*.py[cod]
+.idea/
+.vscode/
+.DS_Store
+*.log
