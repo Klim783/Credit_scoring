@@ -23,8 +23,10 @@ async def lifespan(app : FastAPI):
 
 
 app = FastAPI(
-    title="Home credit scoring service",
-    description="API for scoring credit clients' queries",
+    title="Home Credit Scoring API",
+    description="Production-grade Machine Learning service for automated credit risk assessment.",
+    version="1.0.0",
+    lifespan=lifespan
 )
 
 
