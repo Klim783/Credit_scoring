@@ -12,7 +12,23 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 from app.transformers import FinancialRatiosTransformer
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
 
+console = Console()
+
+console.print(Panel.fit("[bold green]Home Credit Machine Learning Training Pipeline[/bold green]"))
+
+table = Table(title="Model Cross-Validation Results")
+table.add_column("Model Architecture", style="cyan", no_wrap=True)
+table.add_column("ROC-AUC", style="magenta")
+table.add_column("Gini Score", style="green")
+
+table.add_row("LightGBM Classifier", f"{lgbm_auc:.4f}", f"{2 * lgbm_auc - 1:.4f}")
+table.add_row("Logistic Regression", f"{lr_auc:.4f}", f"{2 * lr_auc - 1:.4f}")
+
+console.print(table)
 
 if __name__ == "__main__":
     # 1. Load Data
