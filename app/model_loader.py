@@ -1,12 +1,14 @@
 import os
 import joblib
+from app.transformers import FinancialRatiosTransformer
 
-model_path = os.path.join("models", "home_credit_pipeline.joblib")
+MODEL_PATH = os.path.join("models", "home_credit_pipeline.pkl")
+
 
 def load_pipeline():
-	if not os.path.exists(model_path):
-		raise FileNotFoundError(
-			f"Model not found at {model_path}"
-		)
-	pipeline = joblib.load(model_path)
-	return pipeline
+    if not os.path.exists(MODEL_PATH):
+        raise FileNotFoundError(
+            f"Модель не найдена по пути: {os.path.abspath(MODEL_PATH)}"
+        )
+
+    return joblib.load(MODEL_PATH)
