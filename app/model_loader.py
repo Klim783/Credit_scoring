@@ -1,14 +1,20 @@
 import os
 import joblib
-from app.transformers import FinancialRatiosTransformer
+import logging
+from functools import lru_cache
 
-MODEL_PATH = os.path.join("models", "home_credit_pipeline.pkl")
+logger = logging.getLogger("uvicorn.error")
+model_path = os.path.join("models", "home_credit_pipeline.pkl")
 
 
+@lru_cache(maxsize=1)
 def load_pipeline():
-    if not os.path.exists(MODEL_PATH):
+    if not os.path.exists(model_path):
+        logger.error(f"Model artifact missing at path: {os.path.abspath(model_path)}")
         raise FileNotFoundError(
-            f"Модель не найдена по пути: {os.path.abspath(MODEL_PATH)}"
+            f"Model file not found at: {os.path.abspath(model_path)}"
         )
-
-    return joblib.load(MODEL_PATH)
+    logger.info(f"Loading model from {os.path.abspath(model_path)}")
+    pipeline = joblib.load(model_path)
+    logger.info(f"Pipeline loaded successfully")
+    return pipeline
