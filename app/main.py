@@ -2,12 +2,8 @@ import sys
 from contextlib import asynccontextmanager
 
 import pandas as pd
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException,status
 import logging
-
-from jedi.third_party.typeshed.stubs.docutils.docutils.nodes import status
-from shap.plots import decision
-
 from app.model_loader import load_pipeline
 from app.schemas import CustomerData, PredictionResponse
 
