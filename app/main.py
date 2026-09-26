@@ -19,10 +19,18 @@ async def lifespan(app : FastAPI):
 
 
 app = FastAPI(
-    title="Home Credit Scoring API",
-    description="Production-grade Machine Learning service for automated credit risk assessment.",
+    title="💳 Home Credit Scoring Engine",
+    description="""
+    ### End-to-End Machine Learning Credit Assessment Service
+
+    This API calculates the **probability of default** for credit applicants using a tuned **LightGBM** model.
+
+    * **`/`** - Service health status check
+    * **`/predict`** - Submit client attributes and retrieve default probability + risk decision
+    """,
     version="1.0.0",
-    lifespan=lifespan
+    docs_url="/docs",
+    redoc_url="/redoc"
 )
 
 
